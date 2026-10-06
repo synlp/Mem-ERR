@@ -1,0 +1,37 @@
+data:
+  dataset: iu_xray
+  annotations: data/iu_xray/annotation.json
+  image_root: data/iu_xray/images
+  segmented_root: data/iu_xray/segmented
+  view_index: 0
+model:
+  clip_model: openai/clip-vit-base-patch32
+  hidden_dimension: 512
+  fusion_layers: 12
+pool:
+  memory_frequency_threshold: 5
+  expected_memory_rows: 510
+  clusters: 300
+  encoding_batch_size: 16
+  cluster_batch_size: 2048
+extraction:
+  gamma_r: 0.5
+  gamma_t: 0.5
+  top_k: 5
+  redundancy_threshold: 0.8
+training:
+  batch_size: 16
+  learning_rate: 0.00005
+  weight_decay: 0.01
+runtime:
+  seed: 13
+fallbacks:
+  fusion_heads: 8
+  feedforward_dimension: 2048
+  dropout: 0.1
+  segmentation_threshold: 0.5
+  sentence_splitter: regex
+  cluster_algorithm: soft_kmeans
+  soft_kmeans_temperature: 1.0
+  soft_kmeans_iterations: 10
+  index_clusters: 1
